@@ -1,6 +1,8 @@
 # defi-stake-yield-brownie
 
-### Summary
+### Features
+
+---
 
 The app allows you to:
 
