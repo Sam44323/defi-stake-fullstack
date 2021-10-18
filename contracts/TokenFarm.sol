@@ -41,6 +41,16 @@ contract TokenFarm is Ownable {
     }
 
     /**
+    Function for getting the total locked value for the user
+    _user: address of the user whose total value needs to be calculated
+     */
+
+    function getUserTotalValue(address _user) public view returns (uint256) {
+        require(userIsStaker(_user), "No token is staked by the user!");
+        uint256 totalValue = 0;
+    }
+
+    /**
   Function for staking tokens.
   _amount: amount of token you want to stake
   _token: contract address of the token that you want to stake
