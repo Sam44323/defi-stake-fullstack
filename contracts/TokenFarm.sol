@@ -23,7 +23,7 @@ contract TokenFarm is Ownable {
     mapping(address => mapping(address => uint256)) public stakingBalance;
     IERC20 public dappToken;
 
-    constructor(address _dapptokenAddress) public {
+    constructor(address _dapptokenAddress) {
         dappToken = IERC20(_dapptokenAddress);
     }
 
@@ -45,7 +45,7 @@ contract TokenFarm is Ownable {
     _user: address of the user whose total value needs to be calculated
      */
 
-    function getUserTotalValue(address _user) public view returns (uint256) {
+    function getUserTotalValue(address _user) public returns (uint256) {
         require(userIsStaker(_user), "No token is being staked by the user!");
         uint256 totalValue = 0;
         for (
@@ -55,7 +55,7 @@ contract TokenFarm is Ownable {
         ) {
             totalValue += getSingleTokengValue(
                 _user,
-                allowedTokens[allowedTokenIndex]
+                allowedTokens[allowedTokensIndex]
             );
         }
     }
@@ -66,6 +66,7 @@ contract TokenFarm is Ownable {
 
     function getSingleTokengValue(address _user, address _tokenAddress)
         public
+        view
         returns (uint256)
     {
         return stakingBalance[_user][_tokenAddress];
@@ -104,7 +105,7 @@ contract TokenFarm is Ownable {
     Function checks if the user is present in the stakers list or not
      */
 
-    function userIsStaker(address _user) internal returns (bool) {
+    function userIsStaker(address _user) internal view returns (bool) {
         for (uint256 userIndex = 0; userIndex < stakers.length; userIndex++) {
             if (stakers[userIndex] == _user) {
                 return true;
