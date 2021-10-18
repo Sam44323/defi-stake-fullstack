@@ -61,7 +61,8 @@ contract TokenFarm is Ownable {
     }
 
     /**
-    Function for getting the staking value of an user for a particular token
+    Function for getting the staking value of an user for a particular token in terms of usd
+    for which we fetch the latest price using chainlink
     */
 
     function getSingleTokenValue(address _user, address _tokenAddress)
