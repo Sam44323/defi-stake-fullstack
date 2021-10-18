@@ -41,6 +41,11 @@ contract TokenFarm is Ownable {
         so that we can call the required functions for that token
         */
         IERC20(_token).transferFrom(msg.sender, address(this), _amount);
+
+        // updating the staking value for the user based on the token address
+        stakingBalance[_token][msg.sender] =
+            stakingBalance[_token][msg.sender] +
+            _amount;
     }
 
     /**
