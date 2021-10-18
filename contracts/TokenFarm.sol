@@ -71,6 +71,7 @@ contract TokenFarm is Ownable {
                 allowedTokens[allowedTokensIndex]
             );
         }
+        return totalValue;
     }
 
     /**
