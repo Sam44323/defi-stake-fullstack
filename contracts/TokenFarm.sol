@@ -15,11 +15,14 @@ pragma solidity ^0.8.0;
 
 contract TokenFarm is Ownable {
     address[] public allowedTokens;
+    address[] public stakers; // storing the list of staker addresses;
     // for storing the staker amount data that's been staked
     /**
       mapping (token-address => mapping(user-address => amount))
      */
     mapping(address => mapping(address => uint256)) public stakingBalance;
+
+    function issueToken() public onlyOwner {}
 
     /**
   Function for staking tokens.
@@ -41,11 +44,26 @@ contract TokenFarm is Ownable {
         so that we can call the required functions for that token
         */
         IERC20(_token).transferFrom(msg.sender, address(this), _amount);
-
+        if (userIsStaker(msg.sender) == false) {
+            stakers.push(msg.sender);
+        }
         // updating the staking value for the user based on the token address
         stakingBalance[_token][msg.sender] =
             stakingBalance[_token][msg.sender] +
             _amount;
+    }
+
+    /**
+    Function checks if the user is present in the stakers list or not
+     */
+
+    function userIsStaker(address _user) internal returns (bool) {
+        for (uint256 userIndex = 0; userIndex < stakers.length; userIndex++) {
+            if (stakers[userIndex] == _user) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
