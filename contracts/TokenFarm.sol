@@ -22,7 +22,7 @@ contract TokenFarm is Ownable {
       mapping (token-address => mapping(user-address => amount))
      */
     mapping(address => mapping(address => uint256)) public stakingBalance;
-    mapping(addressn => address) public tokenPriceFeedMapping;
+    mapping(address => address) public tokenPriceFeedMapping;
     IERC20 public dappToken;
 
     constructor(address _dapptokenAddress) {
