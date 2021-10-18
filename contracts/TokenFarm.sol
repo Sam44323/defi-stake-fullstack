@@ -9,11 +9,17 @@ This very contract allows you to
 // SPDX-License-Identifier: MIT
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 pragma solidity ^0.8.0;
 
 contract TokenFarm is Ownable {
     address[] public allowedTokens;
+    // for storing the staker amount data that's been staked
+    /**
+      mapping (token-address => mapping(user-address => amount))
+     */
+    mapping(address => mapping(address => uint256)) public stakingBalance;
 
     /**
   Function for staking tokens.
@@ -26,6 +32,15 @@ contract TokenFarm is Ownable {
             tokenIsAllowed(_token),
             "The requested token is currently not allowed on the platform for staking!"
         );
+
+        /** 
+        using the transferFrom function for transfering the particular token,
+        from the user address to the contract.
+
+        Here we are using the IERC20(_token) because we are using the IERC20 interface to wrap the token address
+        so that we can call the required functions for that token
+        */
+        IERC20(_token).transferFrom(msg.sender, address(this), _amount);
     }
 
     /**
