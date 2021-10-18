@@ -22,7 +22,10 @@ contract TokenFarm is Ownable {
    */
     function stakeToken(uint256 _amount, address _token) public {
         require(_amount > 0, "Amount must me more than 0");
-        require(tokenIsAllowed(_token));
+        require(
+            tokenIsAllowed(_token),
+            "The requested token is currently not allowed on the platform for staking!"
+        );
     }
 
     /**
