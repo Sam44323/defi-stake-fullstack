@@ -10,6 +10,7 @@ This very contract allows you to
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 pragma solidity ^0.8.0;
 
@@ -21,10 +22,22 @@ contract TokenFarm is Ownable {
       mapping (token-address => mapping(user-address => amount))
      */
     mapping(address => mapping(address => uint256)) public stakingBalance;
+    mapping(addressn => address) public tokenPriceFeedMapping;
     IERC20 public dappToken;
 
     constructor(address _dapptokenAddress) {
         dappToken = IERC20(_dapptokenAddress);
+    }
+
+    /**
+    Function for setting the contract address for the price feed
+     */
+
+    function setPriceFeedContract(address _token, address _priceFeed)
+        public
+        onlyOwner
+    {
+        tokenPriceFeedMapping[_token] = _priceFeed;
     }
 
     /**
@@ -79,7 +92,8 @@ contract TokenFarm is Ownable {
     _token: the address of the token for which the usd value is to be returned
      */
 
-    function getTokenValue(address _token) public view returns (uint256) {
+    function getTokenValueInUSD(address _token) public view returns (uint256) {
+        address priceFeedAddress = tokenPriceFeedMapping[_token];
         return 1;
     }
 
