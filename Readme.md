@@ -1,4 +1,4 @@
-# defi-stake-yield-brownie
+# defi-stake-fullstack
 
 ### Features
 
@@ -13,8 +13,7 @@ The app allows you to:
 
 And more!
 
-- [defi-stake-yield-brownie](#defi-stake-yield-brownie)
-  - [Summary](#summary)
+- [defi-stake-fullstack](#defi-stake-fullstacke)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Useage](#useage)
