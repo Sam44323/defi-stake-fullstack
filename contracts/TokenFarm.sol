@@ -92,9 +92,18 @@ contract TokenFarm is Ownable {
     _token: the address of the token for which the usd value is to be returned
      */
 
-    function getTokenValueInUSD(address _token) public view returns (uint256) {
+    function getTokenValueInUSD(address _token)
+        public
+        view
+        returns (uint256, uint256)
+    {
         address priceFeedAddress = tokenPriceFeedMapping[_token];
-        return 1;
+        AggregatorV3Interface priceFeed = AggregatorV3Interface(
+            priceFeedAddress
+        );
+        (, int256 price, , , ) = priceFeed.latestRoundData();
+        // as decimals returns uint8, so we typecasted to uint256
+        return (uint256(price), uint256(priceFeed.decimals()));
     }
 
     /**
