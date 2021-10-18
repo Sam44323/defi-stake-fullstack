@@ -48,6 +48,27 @@ contract TokenFarm is Ownable {
     function getUserTotalValue(address _user) public view returns (uint256) {
         require(userIsStaker(_user), "No token is being staked by the user!");
         uint256 totalValue = 0;
+        for (
+            uint256 allowedTokensIndex = 0;
+            allowedTokensIndex < allowedTokens.length;
+            allowedTokensIndex++
+        ) {
+            totalValue += getSingleTokengValue(
+                _user,
+                allowedTokens[allowedTokenIndex]
+            );
+        }
+    }
+
+    /**
+    Function for getting the staking value of an user for a particular token
+     */
+
+    function getSingleTokengValue(address _user, address _tokenAddress)
+        internal
+        returns (uint256)
+    {
+        return stakingBalance[_user][_tokenAddress];
     }
 
     /**
