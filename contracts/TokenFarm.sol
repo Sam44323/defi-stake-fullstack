@@ -66,7 +66,7 @@ contract TokenFarm is Ownable {
             allowedTokensIndex < allowedTokens.length;
             allowedTokensIndex++
         ) {
-            totalValue += getSingleTokengValue(
+            totalValue += getSingleTokenValue(
                 _user,
                 allowedTokens[allowedTokensIndex]
             );
