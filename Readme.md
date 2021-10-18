@@ -1,4 +1,4 @@
-# defi-stake-fullstack
+# Defi-Stake-Fullstack
 
 ### Features
 
