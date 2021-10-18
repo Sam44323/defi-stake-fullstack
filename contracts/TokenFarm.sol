@@ -65,7 +65,7 @@ contract TokenFarm is Ownable {
      */
 
     function getSingleTokengValue(address _user, address _tokenAddress)
-        internal
+        public
         returns (uint256)
     {
         return stakingBalance[_user][_tokenAddress];
