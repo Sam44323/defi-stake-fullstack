@@ -64,7 +64,7 @@ contract TokenFarm is Ownable {
     Function for getting the staking value of an user for a particular token
      */
 
-    function getSingleTokengValue(address _user, address _tokenAddress)
+    function getSingleTokenValue(address _user, address _tokenAddress)
         public
         view
         returns (uint256)
