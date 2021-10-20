@@ -85,7 +85,7 @@ contract TokenFarm is Ownable {
         view
         returns (uint256)
     {
-        (uint256 price, uint256 decimals) = getTokenValueInUSD(_token);
+        (uint256 price, uint256 decimals) = getTokenValueInUSD(_tokenAddress);
         return ((stakingBalance[_tokenAddress][_user] * price) /
             (10**decimals));
     }
