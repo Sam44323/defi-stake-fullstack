@@ -17,6 +17,7 @@ def deploy_token_farm_and_dapp_token():
     tx.wait(1)
 
     # adding allowed tokens to token farm contract
+    # creating a dict with token addresses and their price feed contract data
     weth_token = get_contract('weth_token')
     fau_token = get_contract('fau_token')
     dict_of_allowed_tokens = {
