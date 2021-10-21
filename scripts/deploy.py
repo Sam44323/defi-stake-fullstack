@@ -17,10 +17,12 @@ def deploy_token_farm_and_dapp_token():
     tx.wait(1)
 
     # adding allowed tokens to token farm
+    weth_token = get_contract('weth_token')
+    fau_token = get_contract('fau_token')
     dict_of_allowed_tokens = {
-        dapp_token: dapp_token.address,
-        weth_token: get_contract('weth_token').address,
-        fau_token: get_contract('fau_token').address
+        dapp_token: get_contract("dai_usd_price_feed"),
+        weth_token: get_contract("dai_usd_price_feed"),
+        fau_token: get_contract("eth_usd_price_feed")
     }
 
 
