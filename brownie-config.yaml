@@ -12,7 +12,7 @@ wallets:
 networks:
   development:
     verify: False
-  kovan:
-    verify: True
   ganache:
     verify: False
+  kovan:
+    verify: True
