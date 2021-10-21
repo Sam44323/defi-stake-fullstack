@@ -1,5 +1,5 @@
 from brownie import DappToken, TokenFarm
-from scripts.helpful_scripts import get_account, get_verify_status
+from scripts.helpful_scripts import get_account, get_contract, get_verify_status
 from web3 import Web3
 
 KEPT_BALANCE = Web3.toWei(100, "ether")
@@ -17,6 +17,11 @@ def deploy_token_farm_and_dapp_token():
     tx.wait(1)
 
     # adding allowed tokens to token farm
+    dict_of_allowed_tokens = {
+        dapp_token: dapp_token.address,
+        weth_token: get_contract('weth_token').address,
+        fau_token: get_contract('fau_token').address
+    }
 
 
 def add_allowed_tokens(token_farm, dict_of_allowed_tokens, account):
