@@ -4,7 +4,7 @@
 
 ---
 
-The app allows you to:
+This app allows you to:
 
 - `stakeTokens`: Add any approved token to the farming contract for yeild farming, collateral, or whatever you want to do.
 - `unStakeTokens`: Remove your tokens from the contract.
