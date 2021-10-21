@@ -14,3 +14,5 @@ networks:
     verify: False
   kovan:
     verify: True
+  ganache:
+    verify: False
