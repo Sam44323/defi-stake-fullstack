@@ -16,7 +16,7 @@ def deploy_token_farm_and_dapp_token():
         token_farm.address, dapp_token.totalSupply() - KEPT_BALANCE, {"from": account})
     tx.wait(1)
 
-    # adding allowed tokens to token farm
+    # adding allowed tokens to token farm contract
     weth_token = get_contract('weth_token')
     fau_token = get_contract('fau_token')
     dict_of_allowed_tokens = {
