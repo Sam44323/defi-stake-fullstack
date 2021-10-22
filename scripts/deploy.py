@@ -20,6 +20,8 @@ def deploy_token_farm_and_dapp_token():
     # creating a dict with token addresses and their price feed contract data
     weth_token = get_contract('weth_token')
     fau_token = get_contract('fau_token')
+
+    # for demo purpose we are using dapp token price as weth
     dict_of_allowed_tokens = {
         dapp_token: get_contract("dai_usd_price_feed"),
         weth_token: get_contract("dai_usd_price_feed"),
