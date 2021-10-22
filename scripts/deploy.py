@@ -27,10 +27,17 @@ def deploy_token_farm_and_dapp_token():
         weth_token: get_contract("dai_usd_price_feed"),
         fau_token: get_contract("eth_usd_price_feed")
     }
+    add_allowed_tokens(token_farm, dict_of_allowed_tokens, account)
 
 
 def add_allowed_tokens(token_farm, dict_of_allowed_tokens, account):
-    pass
+    for token in dict_of_allowed_tokens:
+        tx = token_farm.addAllowedTokens(token.address, {"from": account})
+        tx.wait(1)
+        tx = token_farm.setPriceFeedContract(
+            token.address, dict_of_allowed_tokens[token], {"from": account})
+        tx.wait(1)
+        print("Add tokens addresses for staking and their respective price-feeds!")
 
 
 def main():
