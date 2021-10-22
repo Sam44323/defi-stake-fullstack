@@ -10,7 +10,9 @@ def test_set_price_feed_contracts():
     token_farm, dapp_token = deploy_token_farm_and_dapp_token()
     account = get_account()
     non_owner_account = get_account(index=1)
-    token_farm.setPriceFeedContract(dapp_token.address, get_contract(
-        "eth_usd_price_feed"), {"from": account})
-    assert token_farm.tokenPriceFeedMapping(dapp_token.address) == get_contract(
-        "eth_usd_price_feed").address
+    price_feed_address = get_contract(
+        "eth_usd_price_feed"). address
+    token_farm.setPriceFeedContract(
+        dapp_token.address, price_feed_address, {"from": account})
+    assert token_farm.tokenPriceFeedMapping(
+        dapp_token.address) == price_feed_address
