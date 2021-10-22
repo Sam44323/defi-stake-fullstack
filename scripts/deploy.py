@@ -28,6 +28,7 @@ def deploy_token_farm_and_dapp_token():
         fau_token: get_contract("eth_usd_price_feed")
     }
     add_allowed_tokens(token_farm, dict_of_allowed_tokens, account)
+    return token_farm, dapp_token
 
 
 def add_allowed_tokens(token_farm, dict_of_allowed_tokens, account):
