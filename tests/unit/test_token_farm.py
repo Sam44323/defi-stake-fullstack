@@ -1,3 +1,4 @@
+from _pytest.config import exceptions
 from scripts.deploy import deploy_token_farm_and_dapp_token
 from scripts.helpful_scripts import LOCAL_BLOCKCHAIN_ENVIRONMENTS, get_account, get_contract
 from brownie import network
@@ -16,3 +17,8 @@ def test_set_price_feed_contracts():
         dapp_token.address, price_feed_address, {"from": account})
     assert token_farm.tokenPriceFeedMapping(
         dapp_token.address) == price_feed_address
+    try:
+        token_farm.setPriceFeedContract(
+            dapp_token.address, price_feed_address, {"from": non_owner_account})
+    except:
+        assert True
