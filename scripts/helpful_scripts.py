@@ -96,6 +96,7 @@ def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_PRICE_FEED_VALUE):
     account = get_account()
     print("Deploying Mock Link Token...")
     link_token = LinkToken.deploy({"from": account})
+    print(f"Deployed to {link_token.address}")
     print("Deploying Mock Price Feed...")
     mock_price_feed = MockV3Aggregator.deploy(
         decimals, initial_value, {"from": account}
