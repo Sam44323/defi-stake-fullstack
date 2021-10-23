@@ -43,7 +43,7 @@ def test_stake_tokens(amount_staked):
 
 def test_issue_tokens(amount_staked):
     if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        pytest.skip("Only for local testing!")
+        pytest.skip("Only for the local testing!")
     account = get_account()
     token_farm, dapp_token = test_stake_tokens(amount_staked)
     starting_balance = dapp_token.balanceOf(account.address)
