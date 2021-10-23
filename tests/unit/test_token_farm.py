@@ -1,6 +1,6 @@
 from _pytest.config import exceptions
 from scripts.deploy import deploy_token_farm_and_dapp_token
-from scripts.helpful_scripts import LOCAL_BLOCKCHAIN_ENVIRONMENTS, get_account, get_contract
+from scripts.helpful_scripts import LOCAL_BLOCKCHAIN_ENVIRONMENTS, get_account, get_contract, INITIAL_PRICE_FEED_VALUE
 from brownie import network, exceptions
 import pytest
 
@@ -41,5 +41,19 @@ def test_stake_tokens(amount_staked):
     return token_farm, dapp_token
 
 
-def test_issue_tokens():
-    pass
+def test_issue_tokens(amount_staked):
+    if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
+        pytest.skip("Only for local testing!")
+    account = get_account()
+    token_farm, dapp_token = test_stake_tokens(amount_staked)
+    starting_balance = dapp_token.balanceOf(account.address)
+    token_farm.issueToken({"from": account})
+    """
+     we are staking 1 dapp_token == 1 price in ETH
+     so... we should get 2000 dapp_token as reward
+     since the price of the eth is $2000 value
+     """
+    assert(
+        dapp_token.balanceOf(
+            account.address) == starting_balance + INITIAL_PRICE_FEED_VALUE
+    )
