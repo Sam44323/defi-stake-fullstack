@@ -3,10 +3,17 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ChainId, DAppProvider } from "@usedapp/core";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <DAppProvider
+      config={{
+        supportedChains: [ChainId.Kovan, ChainId.Rinkeby],
+      }}
+    >
+      <App />
+    </DAppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
