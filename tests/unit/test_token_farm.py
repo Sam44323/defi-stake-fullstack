@@ -50,7 +50,7 @@ def test_issue_tokens(amount_staked):
     token_farm.issueToken({"from": account})
     """
      we are staking 1 dapp_token == 1 price in ETH
-     so... we should get 2000 dapp_token as reward
+     so, we should get 2000 dapp_token as reward
      since the price of the eth is $2000 value
      """
     assert(
