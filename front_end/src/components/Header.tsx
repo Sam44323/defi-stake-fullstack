@@ -6,11 +6,11 @@ const Header: React.FC = () => {
   return (
     <div>
       {account ? (
-        <button color="primary" onClick={deactivate}>
+        <button color="primary" onClick={() => deactivate()}>
           Disconnect
         </button>
       ) : (
-        <button color="primary" onClick={() => activateBrowserWallet()}>
+        <button color="primary" onClick={() => activateBrowserWallet}>
           Connect
         </button>
       )}
