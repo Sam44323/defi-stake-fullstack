@@ -46,7 +46,7 @@ const useStakeTokens = (tokenAddress: string) => {
     stakeErc20Send(amount, tokenAddress);
   };
 
-  return { approveTokenTransferAndStake, approveErc20State };
+  return { approveTokenTransferAndStake, stakeErc20State };
 };
 
 export default useStakeTokens;

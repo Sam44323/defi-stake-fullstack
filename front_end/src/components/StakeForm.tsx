@@ -8,8 +8,10 @@ import { utils } from "ethers";
 const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
   const [amount, setAmount] = React.useState<number>(0);
   const { address } = token;
-  const { approveTokenTransferAndStake } = useStakeTokens(address);
+  const { approveTokenTransferAndStake, stakeErc20State } =
+    useStakeTokens(address);
   const { notifications } = useNotifications();
+  const isMining = stakeErc20State.status === "Mining";
 
   const handleSubmit = () => {
     const amountToStakeInWei = utils.parseEther(amount.toString()).toString();
@@ -50,6 +52,7 @@ const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
         size="large"
         variant="contained"
         onClick={handleSubmit}
+        disabled={isMining}
       >
         Stake
       </Button>
