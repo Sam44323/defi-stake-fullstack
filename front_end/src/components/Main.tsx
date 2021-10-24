@@ -4,8 +4,15 @@ import helperConfig from "../helper-config.json";
 import mapConfig from "../chain-info/deployments/map.json";
 import brownieConfig from "../brownie-config.json";
 import { constants } from "ethers";
+import YourWallet from "./YourWallet";
 
 type NetworkIDS = 1 | 4 | 42 | 1337;
+
+export type Token = {
+  image: string;
+  address: string;
+  name: string;
+};
 
 const Main: React.FC = () => {
   const { chainId } = useEthers();
@@ -30,13 +37,14 @@ const Main: React.FC = () => {
       ? mapConfig[String(chainId) as "42"].TokenFarm[0]
       : constants.AddressZero;
 
-  console.log(
-    dappTokenAddress,
-    wethTokenAddress,
-    fauTokenAddress,
-    tokenFarmAddress
-  );
-  return <></>;
+  const supportedTokens: Array<Token> = [
+    {
+      image: "",
+      address: dappTokenAddress,
+      name: "DAPP",
+    },
+  ];
+  return <YourWallet />;
 };
 
 export default Main;
