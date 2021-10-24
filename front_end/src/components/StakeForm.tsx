@@ -7,11 +7,9 @@ import useStakeTokens from "../hooks/useStakeTokens";
 
 const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
   const [amount, setAmount] = React.useState<number>(0);
-  const { approveTokenTransfer, approveErc20State } = useStakeTokens(
-    token.address
-  );
-  const { account } = useEthers();
   const { address } = token;
+  const { approveTokenTransfer, approveErc20State } = useStakeTokens(address);
+  const { account } = useEthers();
   const tokenBalance = useTokenBalance(address, account);
   const formattedBalance: number = tokenBalance
     ? parseFloat(formatUnits(tokenBalance, 18))
@@ -24,7 +22,12 @@ const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
         onChange={(e) => setAmount(parseFloat(e.target.value))}
         type="number"
       />
-      <Button color="primary" size="large" variant="contained">
+      <Button
+        color="primary"
+        size="large"
+        variant="contained"
+        onClick={() => approveTokenTransfer(amount.toString())}
+      >
         Stake
       </Button>
     </>
