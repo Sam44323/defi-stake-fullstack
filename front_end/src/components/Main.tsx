@@ -6,6 +6,7 @@ import brownieConfig from "../brownie-config.json";
 import { constants } from "ethers";
 import YourWallet from "./YourWallet";
 import { dai, dapp, eth } from "../assets/index";
+import { makeStyles } from "@material-ui/core";
 
 type NetworkIDS = 1 | 4 | 42 | 1337;
 
@@ -15,9 +16,18 @@ export type Token = {
   name: string;
 };
 
+const useStyles = makeStyles((theme) => ({
+  title: {
+    color: theme.palette.common.white,
+    textAlign: "center",
+    padding: theme.spacing(4),
+  },
+}));
+
 const Main: React.FC = () => {
   const { chainId } = useEthers();
   const networkName = chainId ? helperConfig[chainId as NetworkIDS] : "";
+  const classes = useStyles();
   /**
    * getting the contract addresses for all tokens and Token-Farm contract. If network is not kovan is not present then use a constant zero address(0x0000...) from ethers
    */
@@ -55,7 +65,12 @@ const Main: React.FC = () => {
       name: "WETH",
     },
   ];
-  return <YourWallet supportedTokens={supportedTokens} />;
+  return (
+    <>
+      <h2 className={classes.title}>Dapp Token App</h2>
+      <YourWallet supportedTokens={supportedTokens} />
+    </>
+  );
 };
 
 export default Main;
