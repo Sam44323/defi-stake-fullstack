@@ -5,6 +5,7 @@ import mapConfig from "../chain-info/deployments/map.json";
 import brownieConfig from "../brownie-config.json";
 import { constants } from "ethers";
 import YourWallet from "./YourWallet";
+import { dai, dapp, eth } from "../assets/index";
 
 type NetworkIDS = 1 | 4 | 42 | 1337;
 
@@ -39,9 +40,19 @@ const Main: React.FC = () => {
 
   const supportedTokens: Array<Token> = [
     {
-      image: "",
+      image: dapp,
       address: dappTokenAddress,
       name: "DAPP",
+    },
+    {
+      image: dai,
+      address: fauTokenAddress,
+      name: "DAI",
+    },
+    {
+      image: eth,
+      address: wethTokenAddress,
+      name: "WETH",
     },
   ];
   return <YourWallet />;
