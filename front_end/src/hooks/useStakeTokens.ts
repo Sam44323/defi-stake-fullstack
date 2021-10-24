@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEthers, useContractFunction } from "@usedapp/core";
 import TokenFarm from "../chain-info/contracts/TokenFarm.json";
 import ERC20 from "../chain-info/contracts/dependencies/OpenZeppelin/openzeppelin-contracts@4.2.0/ERC20.json";
