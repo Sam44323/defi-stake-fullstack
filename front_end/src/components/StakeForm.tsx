@@ -9,7 +9,8 @@ import { utils } from "ethers";
 const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
   const [amount, setAmount] = React.useState<number>(0);
   const { address } = token;
-  const { approveTokenTransfer, approveErc20State } = useStakeTokens(address);
+  const { approveTokenTransferAndStake, approveErc20State } =
+    useStakeTokens(address);
   const { account } = useEthers();
   const tokenBalance = useTokenBalance(address, account);
   const formattedBalance: number = tokenBalance
@@ -18,7 +19,7 @@ const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
 
   const handleSubmit = () => {
     const amountToStakeInWei = utils.parseEther(amount.toString()).toString();
-    approveTokenTransfer(amountToStakeInWei);
+    approveTokenTransferAndStake(amountToStakeInWei);
   };
 
   return (

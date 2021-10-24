@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEthers, useContractFunction } from "@usedapp/core";
 import TokenFarm from "../chain-info/contracts/TokenFarm.json";
 import ERC20 from "../chain-info/contracts/dependencies/OpenZeppelin/openzeppelin-contracts@4.2.0/ERC20.json";
 import mapConfig from "../chain-info/deployments/map.json";
 import { constants, utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useStakeTokens = (tokenAddress: string) => {
   // Token Farm Contract
@@ -24,13 +23,30 @@ const useStakeTokens = (tokenAddress: string) => {
     useContractFunction(tokenContract, "approve", {
       transactionName: "Approve ERC20 transfer",
     });
-  const approveTokenTransfer = (amount: string) => {
+  const approveTokenTransferAndStake = (amount: string) => {
+    setAmountToStake(amount.toString());
     return approveErc20Send(tokenFarmAddress, amount);
   };
 
-  const [state, setState] = useState(approveErc20State);
+  // logic for staking a token
+  const { send: stakeErc20Send, state: stakeErc20State } = useContractFunction(
+    tokenFarmContract,
+    "stakeToken",
+    {
+      transactionName: "Stake tokens",
+    }
+  );
 
-  return { approveTokenTransfer, approveErc20State };
+  const [state, setState] = useState(approveErc20State);
+  const [amountToStake, setAmountToStake] = useState<string>("");
+
+  useEffect(() => {
+    if (approveErc20State.status === "Success") {
+      stakeErc20Send();
+    }
+  }, [approveErc20State, stakeErc20Send]);
+
+  return { approveTokenTransferAndStake, approveErc20State };
 };
 
 export default useStakeTokens;
