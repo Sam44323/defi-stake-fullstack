@@ -23,6 +23,11 @@ const YourWallet: React.FC<{ supportedTokens: Array<Token> }> = ({
               />
             ))}
           </TabList>
+          {supportedTokens.map((token, index) => (
+            <TabPanel value={index.toString()} key={index}>
+              <div></div>
+            </TabPanel>
+          ))}
         </TabContext>
       </Box>
     </Box>
