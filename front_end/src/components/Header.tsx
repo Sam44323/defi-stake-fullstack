@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 const Header: React.FC = () => {
   const classes = useStyles();
   const { account, activateBrowserWallet, deactivate } = useEthers();
+  console.log(account);
   return (
     <div className={classes.container}>
       {account ? (
