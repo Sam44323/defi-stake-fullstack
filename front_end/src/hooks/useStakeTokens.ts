@@ -23,9 +23,13 @@ const useStakeTokens = (tokenAddress: string) => {
     useContractFunction(tokenContract, "approve", {
       transactionName: "Approve ERC20 transfer",
     });
-  const approveTokenTransferAndStake = (amount: string) => {
-    setAmountToStake(amount.toString());
-    return approveErc20Send(tokenFarmAddress, amount);
+  const approveTokenTransferAndStake = async (amount: string) => {
+    try {
+      await approveErc20Send(tokenFarmAddress, amount);
+      stakeTokens(amount.toString());
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // logic for staking a token
@@ -37,14 +41,9 @@ const useStakeTokens = (tokenAddress: string) => {
     }
   );
 
-  const [state, setState] = useState(approveErc20State);
-  const [amountToStake, setAmountToStake] = useState<string>("");
-
-  useEffect(() => {
-    if (approveErc20State.status === "Success") {
-      stakeErc20Send();
-    }
-  }, [approveErc20State, stakeErc20Send]);
+  const stakeTokens = (amount: string) => {
+    stakeErc20Send(amount, tokenAddress);
+  };
 
   return { approveTokenTransferAndStake, approveErc20State };
 };
