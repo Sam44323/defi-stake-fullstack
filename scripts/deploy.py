@@ -48,7 +48,7 @@ def add_allowed_tokens(token_farm, dict_of_allowed_tokens, account):
 
 
 def update_front_end():
-    # Send the build folder to frontend
+    # Send a copy build folder to frontend
     copy_folders_to_front_end('./build', './front_end/src/chain-info')
 
     # Sending our yaml config to frontend in JSON
