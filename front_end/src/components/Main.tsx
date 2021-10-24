@@ -29,6 +29,13 @@ const Main: React.FC = () => {
     networkName === "kovan"
       ? mapConfig[String(chainId) as "42"].TokenFarm[0]
       : constants.AddressZero;
+
+  console.log(
+    dappTokenAddress,
+    wethTokenAddress,
+    fauTokenAddress,
+    tokenFarmAddress
+  );
   return <></>;
 };
 

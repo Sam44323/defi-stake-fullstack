@@ -9,7 +9,7 @@ ReactDOM.render(
   <React.StrictMode>
     <DAppProvider
       config={{
-        supportedChains: [ChainId.Kovan, ChainId.Rinkeby],
+        supportedChains: [ChainId.Kovan],
       }}
     >
       <App />
