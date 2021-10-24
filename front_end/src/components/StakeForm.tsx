@@ -4,6 +4,7 @@ import { useEthers, useTokenBalance } from "@usedapp/core";
 import { formatUnits } from "@ethersproject/units";
 import { Button, Input } from "@material-ui/core";
 import useStakeTokens from "../hooks/useStakeTokens";
+import { utils } from "ethers";
 
 const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
   const [amount, setAmount] = React.useState<number>(0);
@@ -14,7 +15,12 @@ const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
   const formattedBalance: number = tokenBalance
     ? parseFloat(formatUnits(tokenBalance, 18))
     : 0;
-  console.log(amount);
+
+  const handleSubmit = () => {
+    const amountToStakeInWei = utils.parseEther(amount.toString()).toString();
+    approveTokenTransfer(amountToStakeInWei);
+  };
+
   return (
     <>
       <Input
@@ -26,7 +32,7 @@ const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
         color="primary"
         size="large"
         variant="contained"
-        onClick={() => approveTokenTransfer(amount.toString())}
+        onClick={handleSubmit}
       >
         Stake
       </Button>
