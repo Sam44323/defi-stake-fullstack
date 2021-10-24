@@ -3,11 +3,15 @@ import { Token } from "./Main";
 import { useEthers, useTokenBalance } from "@usedapp/core";
 import { formatUnits } from "@ethersproject/units";
 import { Button, Input } from "@material-ui/core";
+import useStakeTokens from "../hooks/useStakeTokens";
 
 const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
   const [amount, setAmount] = React.useState<number>(0);
+  const { approveTokenTransfer, approveErc20State } = useStakeTokens(
+    token.address
+  );
   const { account } = useEthers();
-  const { address, name } = token;
+  const { address } = token;
   const tokenBalance = useTokenBalance(address, account);
   const formattedBalance: number = tokenBalance
     ? parseFloat(formatUnits(tokenBalance, 18))

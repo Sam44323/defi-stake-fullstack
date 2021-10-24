@@ -30,7 +30,7 @@ const useStakeTokens = (tokenAddress: string) => {
 
   const [state, setState] = useState(approveErc20State);
 
-  return { approveTokenTransfer, state };
+  return { approveTokenTransfer, approveErc20State };
 };
 
 export default useStakeTokens;
