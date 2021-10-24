@@ -1,13 +1,12 @@
 import { useEthers } from "@usedapp/core";
 import TokenFarm from "../chain-info/contracts/TokenFarm.json";
+import ERC20 from "../chain-info/contracts/dependencies/OpenZeppelin/openzeppelin-contracts@4.2.0/ERC20.json";
 import mapConfig from "../chain-info/deployments/map.json";
 import { constants, utils } from "ethers";
 import { Contract } from "@ethersproject/contracts";
 
 const useStakeTokens = (tokenAddress: string) => {
-  /**
-   * section for approving or checking approve token in token-farm
-   */
+  // Token Farm Contract
   const { chainId } = useEthers();
   const { abi } = TokenFarm;
   const tokenFarmAddress = chainId
@@ -15,6 +14,10 @@ const useStakeTokens = (tokenAddress: string) => {
     : constants.AddressZero;
   const tokenFarmInterface = new utils.Interface(abi);
   const tokenFarmContract = new Contract(tokenFarmAddress, tokenFarmInterface);
+
+  // Token Contract Section
+  const erc20Interface = new utils.Interface(ERC20.abi);
+  const tokenContract = new Contract(tokenAddress, erc20Interface);
 };
 
 export default useStakeTokens;
