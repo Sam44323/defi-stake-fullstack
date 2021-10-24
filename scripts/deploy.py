@@ -3,6 +3,8 @@ from scripts.helpful_scripts import get_account, get_contract, get_verify_status
 from web3 import Web3
 import yaml
 import json
+import os
+import shutil
 
 KEPT_BALANCE = Web3.toWei(100, "ether")
 
@@ -46,6 +48,9 @@ def add_allowed_tokens(token_farm, dict_of_allowed_tokens, account):
 
 
 def update_front_end():
+    # Send the build folder to frontend
+    copy_folders_to_front_end('./build', './front_end/src/chain-info')
+
     # Sending our yaml config to frontend in JSON
     with open("brownie-config.yaml", "r") as brownie_config:
         # loading our yaml to the dict
@@ -55,6 +60,12 @@ def update_front_end():
         with open('./front_end/src/brownie-config.json', "w") as brownie_config_json:
             json.dump(config_dict, brownie_config_json)
     print("Front end updated!")
+
+
+def copy_folders_to_front_end(src, dest):
+    if os.path.exists(dest):
+        shutil.rmtree(dest)  # delete the dest file if exists
+    shutil.copytree(src, dest)
 
 
 def main():
