@@ -23,6 +23,7 @@ const useStakeTokens = (tokenAddress: string) => {
     useContractFunction(tokenContract, "approve", {
       transactionName: "Approve ERC20 transfer",
     });
+
   const approveTokenTransferAndStake = async (amount: string) => {
     try {
       await approveErc20Send(tokenFarmAddress, amount);
