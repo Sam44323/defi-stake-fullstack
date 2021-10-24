@@ -10,7 +10,6 @@ const WalletBalance: React.FC<WalletBalanceProps> = ({ token }) => {
   const { image, address, name } = token;
   const { account } = useEthers();
   const tokenBalance = useTokenBalance(address, account);
-  console.log(tokenBalance?.toString());
   return <></>;
 };
 
