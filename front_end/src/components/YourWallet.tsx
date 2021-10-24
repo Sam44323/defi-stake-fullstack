@@ -3,6 +3,7 @@ import { Token } from "./Main";
 import { Box, Tab } from "@material-ui/core";
 import { TabList, TabContext, TabPanel } from "@material-ui/lab";
 import WalletBalance from "./WalletBalance";
+import StakeForm from "./StakeForm";
 
 const YourWallet: React.FC<{ supportedTokens: Array<Token> }> = ({
   supportedTokens,
@@ -28,6 +29,7 @@ const YourWallet: React.FC<{ supportedTokens: Array<Token> }> = ({
             <TabPanel value={index.toString()} key={index}>
               <div>
                 <WalletBalance token={token} />
+                <StakeForm token={token} />
               </div>
             </TabPanel>
           ))}
