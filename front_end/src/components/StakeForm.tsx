@@ -27,6 +27,7 @@ const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
         value={amount}
         onChange={(e) => setAmount(parseFloat(e.target.value))}
         type="number"
+        inputProps={{ min: 0 }}
       />
       <Button
         color="primary"
