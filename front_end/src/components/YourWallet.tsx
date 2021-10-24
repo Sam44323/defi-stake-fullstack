@@ -2,6 +2,7 @@ import React from "react";
 import { Token } from "./Main";
 import { Box, Tab } from "@material-ui/core";
 import { TabList, TabContext, TabPanel } from "@material-ui/lab";
+import WalletBalance from "./WalletBalance";
 
 const YourWallet: React.FC<{ supportedTokens: Array<Token> }> = ({
   supportedTokens,
@@ -25,7 +26,9 @@ const YourWallet: React.FC<{ supportedTokens: Array<Token> }> = ({
           </TabList>
           {supportedTokens.map((token, index) => (
             <TabPanel value={index.toString()} key={index}>
-              <div></div>
+              <div>
+                <WalletBalance token={token} />
+              </div>
             </TabPanel>
           ))}
         </TabContext>
