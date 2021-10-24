@@ -58,4 +58,4 @@ def update_front_end():
 
 
 def main():
-    deploy_token_farm_and_dapp_token()
+    deploy_token_farm_and_dapp_token(frontend_update=True)
