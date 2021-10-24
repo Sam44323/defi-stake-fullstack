@@ -1,7 +1,8 @@
 import { useEthers } from "@usedapp/core";
 import TokenFarm from "../chain-info/contracts/TokenFarm.json";
 import mapConfig from "../chain-info/deployments/map.json";
-import { constants } from "ethers";
+import { constants, utils } from "ethers";
+import { Contract } from "@ethersproject/contracts";
 
 const useStakeTokens = (tokenAddress: string) => {
   /**
@@ -12,6 +13,8 @@ const useStakeTokens = (tokenAddress: string) => {
   const tokenFarmAddress = chainId
     ? mapConfig[String(chainId) as "42"].TokenFarm[0]
     : constants.AddressZero;
+  const tokenFarmInterface = new utils.Interface(abi);
+  const tokenFarmContract = new Contract(tokenFarmAddress, tokenFarmInterface);
 };
 
 export default useStakeTokens;
