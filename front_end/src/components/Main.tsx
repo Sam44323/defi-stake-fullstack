@@ -19,7 +19,7 @@ const Main: React.FC = () => {
   const { chainId } = useEthers();
   const networkName = chainId ? helperConfig[chainId as NetworkIDS] : "";
   /**
-   * getting the contract addresses for Dapp-token and Token-Farm. If chainId is not present then use a constant zero address(0x0000...) from ethers
+   * getting the contract addresses for all tokens and Token-Farm contract. If network is not kovan is not present then use a constant zero address(0x0000...) from ethers
    */
   const dappTokenAddress =
     networkName === "kovan"
@@ -55,7 +55,7 @@ const Main: React.FC = () => {
       name: "WETH",
     },
   ];
-  return <YourWallet />;
+  return <YourWallet supportedTokens={supportedTokens} />;
 };
 
 export default Main;
