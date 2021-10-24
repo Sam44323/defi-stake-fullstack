@@ -2,6 +2,7 @@ import React from "react";
 import { useEthers } from "@usedapp/core";
 import helperConfig from "../helper-config.json";
 import mapConfig from "../chain-info/deployments/map.json";
+import brownieConfig from "../brownie-config.json";
 import { constants } from "ethers";
 
 type NetworkIDS = 1 | 4 | 42 | 1337;
@@ -15,6 +16,10 @@ const Main: React.FC = () => {
   const dappTokenAddress = chainId
     ? mapConfig[String(chainId) as "42"].DappToken[0]
     : constants.AddressZero;
+  const wethTokenAddress =
+    brownieConfig.networks[networkName as "kovan"].weth_token;
+  const fauTokenAddress =
+    brownieConfig.networks[networkName as "kovan"].fau_token;
   const tokenFarmAddress = chainId
     ? mapConfig[String(chainId) as "42"].TokenFarm[0]
     : constants.AddressZero;
