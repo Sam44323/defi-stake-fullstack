@@ -16,10 +16,12 @@ const Main: React.FC = () => {
   const dappTokenAddress = chainId
     ? mapConfig[String(chainId) as "42"].DappToken[0]
     : constants.AddressZero;
-  const wethTokenAddress =
-    brownieConfig.networks[networkName as "kovan"].weth_token;
-  const fauTokenAddress =
-    brownieConfig.networks[networkName as "kovan"].fau_token;
+  const wethTokenAddress = chainId
+    ? brownieConfig.networks[networkName as "kovan"].weth_token
+    : constants.AddressZero;
+  const fauTokenAddress = chainId
+    ? brownieConfig.networks[networkName as "kovan"].fau_token
+    : constants.AddressZero;
   const tokenFarmAddress = chainId
     ? mapConfig[String(chainId) as "42"].TokenFarm[0]
     : constants.AddressZero;
