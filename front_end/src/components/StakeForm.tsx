@@ -1,17 +1,19 @@
 import React from "react";
 import { Token } from "./Main";
 import { useNotifications } from "@usedapp/core";
-import { Button, Input } from "@material-ui/core";
+import { Button, Input, CircularProgress } from "@material-ui/core";
 import useStakeTokens from "../hooks/useStakeTokens";
 import { utils } from "ethers";
 
 const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
   const [amount, setAmount] = React.useState<number>(0);
   const { address } = token;
-  const { approveTokenTransferAndStake, stakeErc20State } =
+  const { approveTokenTransferAndStake, stakeErc20State, approveErc20State } =
     useStakeTokens(address);
   const { notifications } = useNotifications();
-  const isMining = stakeErc20State.status === "Mining";
+  const isMining =
+    stakeErc20State.status === "Mining" ||
+    approveErc20State.status === "Mining";
 
   const handleSubmit = () => {
     const amountToStakeInWei = utils.parseEther(amount.toString()).toString();
@@ -54,7 +56,7 @@ const StakeForm: React.FC<{ token: Token }> = ({ token }) => {
         onClick={handleSubmit}
         disabled={isMining}
       >
-        Stake
+        {isMining ? <CircularProgress color="primary" size={26} /> : "Stake"}
       </Button>
     </>
   );
