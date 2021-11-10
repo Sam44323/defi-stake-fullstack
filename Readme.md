@@ -122,18 +122,6 @@ autoflake --in-place --remove-unused-variables -r .
 black .
 ```
 
-# Resources
-
-To get started with Brownie:
-
-- [Chainlink Documentation](https://docs.chain.link/docs)
-- Check out the [Chainlink documentation](https://docs.chain.link/docs) to get started from any level of smart contract engineering.
-- Check out the other [Brownie mixes](https://github.com/brownie-mix/) that can be used as a starting point for your own contracts. They also provide example code to help you get started.
-- ["Getting Started with Brownie"](https://medium.com/@iamdefinitelyahuman/getting-started-with-brownie-part-1-9b2181f4cb99) is a good tutorial to help you familiarize yourself with Brownie.
-- For more in-depth information, read the [Brownie documentation](https://eth-brownie.readthedocs.io/en/stable/).
-- [Create React App](https://create-react-app.dev/docs/adding-typescript/) for front end fun
-- [Materials-UI](https://material-ui.com/)
-
 # License
 
 This project is licensed under the [MIT license](LICENSE).
